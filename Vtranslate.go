@@ -1,7 +1,6 @@
 package main
 
 import (
-	"encoding/json"
 	"fmt"
 	"io/ioutil"
 	"net/http"
@@ -9,6 +8,7 @@ import (
 	"os"
 
 	"github.com/axgle/mahonia"
+	"github.com/pquerna/ffjson/ffjson"
 )
 
 func main() {
@@ -40,7 +40,7 @@ func printjson(dat map[string]interface{}) {
 
 func jsonParse(body []byte) {
 	dat := make(map[string]interface{})
-	if err := json.Unmarshal(body, &dat); err == nil {
+	if err := ffjson.Unmarshal(body, &dat); err == nil {
 		printjson(dat)
 	}
 }
